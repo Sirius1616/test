@@ -1,88 +1,5 @@
 #include "shell.h"
 
-/**
- * _strncpy - a function that copy another string
- * @dest: the first string
- * @src: the second string
- * @n: the number of bytes
- * Return: dest
- */
-
-char *_strncpy(char *dest, const char *src, size_t n)
-{
-	size_t i;
-
-	for (i = 0; i < n && src[i] != '\0'; i++)
-	{
-		dest[i] = src[i];
-	}
-	for (; i < n; i++)
-	{
-		dest[i] = '\0';
-	}
-	return (dest);
-}
-
-
-/**
- * _strcspn - a function that gets segment of a string
- * @s: the first string
- * @reject: the second string
- * Return: count
- */
-
-
-size_t _strcspn(const char *s, const char *reject)
-{
-	const char *p;
-	const char *r;
-	size_t count = 0;
-
-	for (p = s; *p != '\0'; p++)
-	{
-		for (r = reject; *r != '\0'; r++)
-		{
-			if (*p == *r)
-			{
-				return (count);
-			}
-		}
-		count++;
-	}
-	return (count);
-}
-
-/**
- * _strspn - a function that get first segment of a strng in another
- * @s: the first string
- * @accept: the second string
- * Return: count
- */
-
-size_t _strspn(const char *s, const char *accept)
-{
-	const char *p;
-	const char *a;
-	size_t count = 0;
-
-	for (p = s; *p != '\0'; p++)
-	{
-		for (a = accept; *a != '\0'; a++)
-		{
-			if (*p == *a)
-			{
-				count++;
-				break;
-			}
-		}
-		if (*a == '\0')
-		{
-			break;
-		}
-	}
-	return (count);
-}
-
 
 
 /**
@@ -111,41 +28,7 @@ int _strncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
-/**
- * _strtok - a function that tokenizes array of strings
- * @s: the string to tokenize
- * @dlim: the delimeter
- * Return: Token
- */
 
-char *_strtok(char *s, const char *dlim)
-{
-	static char *iter;
-	char *token = NULL;
-	char *end;
-
-	iter = NULL;
-	if (s == NULL)
-		s = iter;
-	if (s == NULL)
-		return (NULL);
-
-	s += _strspn(s, dlim);
-	if (*s == '\0')
-	{
-		return (NULL);
-	}
-	end = s + _strcspn(s, dlim);
-
-	if (end > s)
-	{
-		token = malloc(end - s + 1);
-		_strncpy(token, s, end - s);
-		token[end - s] = '\0';
-	}
-	iter = end;
-	return (token);
-}
 
 /**
  * _strlen - a function that gets the length of a string
